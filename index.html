@@ -90,9 +90,9 @@ body{min-height:100vh}
 .pie-wrap{display:flex;justify-content:center;margin:20px 0}
 .pie-chart{width:min(280px,55vw);aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--blue) 0 60%,var(--pink) 60% 100%);position:relative;box-shadow:0 12px 30px rgba(42,35,55,.10)}
 .pie-chart:after{content:"";position:absolute;inset:28%;border-radius:50%;background:#fffaf6}
-.pie-label{position:absolute;z-index:1;font-weight:1000;font-size:1.45rem;line-height:1.05;text-align:center}
-.pie-label small{font-size:.68rem;letter-spacing:.08em}
-.pie-boy{right:13%;top:24%;color:#397ce8}.pie-girl{left:12%;bottom:23%;color:#ec5599}
+.pie-label{position:absolute;z-index:1;font-weight:1000;font-size:1.22rem;line-height:1.05;text-align:center;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.12)}
+.pie-label small{font-size:.62rem;letter-spacing:.08em}
+.pie-boy{right:15%;top:25%}.pie-girl{left:14%;bottom:24%}
 .pie-legend{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 .pie-legend-item{padding:12px 18px;border-radius:18px;background:#fff;border:1px solid #eee;display:flex;gap:10px;align-items:center}
 .pie-legend-item span{color:var(--muted)}
@@ -119,6 +119,8 @@ body{min-height:100vh}
 .winners{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:18px auto;max-width:900px}
 .winner-chip{padding:9px 13px;border-radius:999px;background:#eef5ff;border:1px solid #d7e6fb;font-weight:800;animation:pop .45s ease both}
 .wrong-section{display:none}
+.thankyou-section{display:none}
+.thankyou-section.revealed{display:block;animation:pop .65s ease both}
 .wrong-section.revealed{display:block;animation:pop .65s ease both}
 .wrong-wrap{background:linear-gradient(135deg,#fff4f8,#fff);border:1px solid #f2dbe5;border-radius:22px;padding:20px}
 .wrong-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
@@ -365,7 +367,7 @@ body{min-height:100vh}
     </div>
   </section>
 
-  <section class="card section-anchor" id="thankyou">
+  <section class="card thankyou-section section-anchor" id="thankyou">
     <div class="end-text">
       <h2>❤️ THANK YOU! ❤️</h2>
       <p style="font-size:1.2rem;line-height:1.7">
@@ -394,6 +396,7 @@ const intro = document.getElementById('revealIntro');
 const title = document.getElementById('revealTitle');
 const winners = document.getElementById('winners');
 const wrongClub = document.getElementById('wrongClub');
+const thankyou = document.getElementById('thankyou');
 
 function makeConfetti() {
   const box = document.getElementById('confetti');
@@ -439,6 +442,9 @@ btn.addEventListener('click',()=>{
         makeConfetti();
         setTimeout(()=>{
           wrongClub.classList.add('revealed');
+          setTimeout(()=>{
+            thankyou.classList.add('revealed');
+          }, 750);
         }, 900);
       },500);
     }
